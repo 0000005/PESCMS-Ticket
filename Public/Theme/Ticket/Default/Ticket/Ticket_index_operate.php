@@ -5,6 +5,15 @@
     <i class="am-margin-left-xs am-margin-right-xs">|</i>
     <span>责任人: <?= $value['user_id'] > 0 ? $value['user_name'] : '<span class="am-text-danger">暂无</span>'; ?></span>
     <i class="am-margin-left-xs am-margin-right-xs">|</i>
+    <span>工单评价:
+        <?= $value['ticket_admin_flag'] == '0' ? '售后对业务不熟悉' : ''; ?>
+        <?= $value['ticket_admin_flag'] == '1' ? '产品设计不合理' : ''; ?>
+        <?= $value['ticket_admin_flag'] == '2' ? '售后能力差' : ''; ?>
+        <?= $value['ticket_admin_flag'] == '3' ? '产品bug' : ''; ?>
+        <?= $value['ticket_admin_flag'] == '4' ? '无脑工单' : ''; ?>
+        <?= $value['ticket_admin_flag'] == '-1' ? '未知' : ''; ?>
+    </span>
+    <i class="am-margin-left-xs am-margin-right-xs">|</i>
 
     <?php if($label->checkAuth('TicketPUTTicketsetListTop') === true && ACTION != 'myTicket' ): ?>
         <a href="<?= $label->url('Ticket-Ticket-setListTop', ['number' => $value['ticket_number'], 'method' => 'PUT', 'back_url' => base64_encode($_SERVER['REQUEST_URI'])]); ?>" class="am-text-primary ajax-click"><?= $value['ticket_top_list'] == 1 ? '<i class="am-icon-long-arrow-down"></i> 还原' : '<i class="am-icon-long-arrow-up"></i> 列表置顶' ?></a>

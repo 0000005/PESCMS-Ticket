@@ -129,8 +129,8 @@ class Index extends \Core\Controller\Controller {
             }else{
                 //移除手尾,
                 $item['ticket_model_group_id'] = trim($item['ticket_model_group_id'], ',');
-
-                $userList = self::db('user')->where("user_group_id IN ({$item['ticket_model_group_id']})")->select();
+                //只通知在工作的客服
+                $userList = self::db('user')->where("user_group_id IN ({$item['ticket_model_group_id']}) and user_vacation = 0")->select();
                 if(!empty($userList)){
                     foreach ($userList as $user){
                         \Model\Notice::addCSNotice($item['ticket_number'], $user, -504);

@@ -36,7 +36,7 @@ class HandleSetting extends \Core\Slice\Slice {
             is_file($license) ? unlink($license) : '';
         }
         if(( $check !== 0 || empty($authorize['authorize_domain']) ) && METHOD == 'PUT'){
-            $_POST['siteTitle'] = 'PESCMS Ticket';
+            $_POST['siteTitle'] = 'PESCMS Ticket(仅供金天鹅内部使用，切勿外传)';
             $_POST['siteLogo'] = DOCUMENT_ROOT.'/Theme/assets/i/logo.png';
             $_POST['siteContact'] = '';
             $_POST['pescmsIntroduce'] = file_get_contents(dirname(__FILE__).'/introduce.php');

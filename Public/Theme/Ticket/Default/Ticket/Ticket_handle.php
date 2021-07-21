@@ -1,8 +1,9 @@
 <div class="am-padding-xs am-padding-top-0">
     <?php require_once THEME . '/Ticket/Common/Ticket_view_package.php'; ?>
 
-    <?php if ($ticket_status < 3 && $ticket_close == '0' && ($user_id == $this->session()->get('ticket')['user_id'] || empty($user_id) || $label->checkAuth('TicketPUTTicketintervene') === true )): ?>
-        <form action="<?= $label->url('Ticket-Ticket-reply'); ?>" class="am-form ajax-submit" method="POST" data-am-validator>
+    <?php if ($ticket_status < 3 && $ticket_close == '0' && ($user_id == $this->session()->get('ticket')['user_id'] || empty($user_id) || $label->checkAuth('TicketPUTTicketintervene') === true)): ?>
+        <form action="<?= $label->url('Ticket-Ticket-reply'); ?>" class="am-form ajax-submit" method="POST"
+              data-am-validator>
             <input type="hidden" name="number" value="<?= $ticket_number; ?>"/>
             <input type="hidden" name="back_url" value="<?= $_GET['back_url']; ?>"/>
             <?= $label->token() ?>
@@ -16,25 +17,29 @@
                             <div class="am-u-lg-12">
 
                                 <?php if ($label->checkAuth('TicketPUTTicketchangeTicketModel') === true): ?>
-                                <div class="am-form-group am-margin-top-xs">
-                                    <label class="am-form-label am-margin-bottom-0 am-text-middle">变更工单类型 : </label>
-                                    <select name="model_id" class="am-form-field am-input-sm am-radius am-text-middle" data-am-selected="{maxHeight: 200, btnSize: 'sm', dropUp: 0}" data="<?= $ticket_model_id ?>">
-                                        <option value="-1">所有类型</option>
-                                        <?php foreach ($ticketModel as $value): ?>
-                                            <option value="<?= $value['ticket_model_id']; ?>" <?= $value['ticket_model_id'] == $ticket_model_id ? 'selected="selected"' : '' ?> >
-                                                <?= $category[$value['ticket_model_cid']]['category_name']; ?>
-                                                - <?= $value['ticket_model_name']; ?>
-                                            </option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                    <hr/>
-                                </div>
+                                    <div class="am-form-group am-margin-top-xs">
+                                        <label class="am-form-label am-margin-bottom-0 am-text-middle">变更工单类型 : </label>
+                                        <select name="model_id"
+                                                class="am-form-field am-input-sm am-radius am-text-middle"
+                                                data-am-selected="{maxHeight: 200, btnSize: 'sm', dropUp: 0}"
+                                                data="<?= $ticket_model_id ?>">
+                                            <option value="-1">所有类型</option>
+                                            <?php foreach ($ticketModel as $value): ?>
+                                                <option value="<?= $value['ticket_model_id']; ?>" <?= $value['ticket_model_id'] == $ticket_model_id ? 'selected="selected"' : '' ?> >
+                                                    <?= $category[$value['ticket_model_cid']]['category_name']; ?>
+                                                    - <?= $value['ticket_model_name']; ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                        <hr/>
+                                    </div>
                                 <?php endif; ?>
 
                                 <?php if ($label->checkAuth('TicketPOSTTicketclose') === true): ?>
                                     <div class="am-form-group">
                                         <label class="am-form-label am-margin-bottom-0">关闭工单 : </label>
-                                        <a href="<?= $label->url('Ticket-Ticket-close', ['number' => $ticket_number, 'method' => 'POST', 'back_url' => base64_encode($_SERVER['REQUEST_URI'])]); ?>" class="am-text-danger ajax-click ajax-dialog" msg="确定要关闭本工单吗？">
+                                        <a href="<?= $label->url('Ticket-Ticket-close', ['number' => $ticket_number, 'method' => 'POST', 'back_url' => base64_encode($_SERVER['REQUEST_URI'])]); ?>"
+                                           class="am-text-danger ajax-click ajax-dialog" msg="确定要关闭本工单吗？">
                                             点击关闭</a>
                                     </div>
                                 <?php endif; ?>
@@ -42,12 +47,12 @@
                                 <?php if ($ticket_status == '0'): ?>
                                     <div class="am-form-group">
                                         <label class="am-form-label am-margin-bottom-0">受理工单 : </label>
+                                        <!--                                        <label class="form-radio-label am-radio-inline">-->
+                                        <!--                                            <input type="radio" name="assign" value="0" checked>-->
+                                        <!--                                            假装没看见-->
+                                        <!--                                        </label>-->
                                         <label class="form-radio-label am-radio-inline">
-                                            <input type="radio" name="assign" value="0" checked>
-                                            假装没看见
-                                        </label>
-                                        <label class="form-radio-label am-radio-inline">
-                                            <input type="radio" name="assign" value="1">
+                                            <input type="radio" name="assign" value="1" checked>
                                             开始受理
                                         </label>
                                     </div>
@@ -71,6 +76,22 @@
                                                 <input type="radio" name="assign" value="4">
                                                 标记完成
                                             </label>
+                                        </div>
+                                        <div class="am-form-group am-margin-top-xs am-hide admin-flag">
+                                            <label class="am-form-label am-margin-bottom-0 am-text-middle">对工单的评价
+                                                : </label>
+                                            <select name="admin_flag"
+                                                    class="am-form-field am-input-sm am-radius am-text-middle"
+                                                    data-am-selected="{maxHeight: 200, btnSize: 'sm', dropUp: 0}"
+                                                    data="<?= $ticket_admin_flag ?>">
+                                                <option value="-1">所有类型</option>
+                                                <option value="0">售后对业务不熟悉</option>
+                                                <option value="1">产品设计不合理</option>
+                                                <option value="2">售后能力差</option>
+                                                <option value="3">产品bug</option>
+                                                <option value="4">无脑工单</option>
+                                            </select>
+                                            <hr/>
                                         </div>
                                     <?php endif; ?>
 
@@ -120,7 +141,8 @@
                                 <div class="am-form-group">
                                     <label class="am-form-label am-margin-bottom-0">是否通知 : </label>
                                     <label class="form-checkbox-label am-checkbox-inline">
-                                        <input type="checkbox" name="notice" value="1" <?= $ticket_model_default_send == 1 ? 'checked="checked"' : '' ?>>
+                                        <input type="checkbox" name="notice"
+                                               value="1" <?= $ticket_model_default_send == 1 ? 'checked="checked"' : '' ?>>
                                         告知客户
                                     </label>
                                     <div class="pes-alert pes-alert-warning am-text-xs " data-am-alert>
@@ -143,7 +165,8 @@
                                     </div>
                                 <?php endif; ?>
 
-                                <button type="submit" id="btn-submit" class="am-btn am-btn-primary am-btn-xs" data-am-loading="{spinner: 'circle-o-notch', loadingText: '提交中...', resetText: '再次提交'}">
+                                <button type="submit" id="btn-submit" class="am-btn am-btn-primary am-btn-xs"
+                                        data-am-loading="{spinner: 'circle-o-notch', loadingText: '提交中...', resetText: '再次提交'}">
                                     提交
                                 </button>
 
@@ -173,6 +196,13 @@
 
 <script>
     function assign(val) {
+        if (val != '4') {
+            $(".admin-flag").addClass("am-hide");
+        }
+        if (val != '3') {
+            $(".assign-user").addClass("am-hide");
+            $(".phrase_list, .pt-reply-content").removeClass("am-hide");
+        }
         if (val == '3') {
             $(".assign-user").removeClass("am-hide");
             $(".phrase_list, .pt-reply-content").addClass("am-hide");
@@ -181,11 +211,9 @@
                 $("input[name=assign]").removeAttr("checked");
                 $("input[name=assign]").eq(0).prop("checked", "checked")
             } else {
-                $("form").submit();
+                //$("form").submit();
+                $(".admin-flag").removeClass("am-hide");
             }
-        } else {
-            $(".assign-user").addClass("am-hide");
-            $(".phrase_list, .pt-reply-content").removeClass("am-hide");
         }
     }
 
@@ -221,12 +249,12 @@
             $.post('<?= $label->url('Ticket-Ticket-getAssignUser', ['method' => 'GET']) ?>', {group: group}, function (result) {
                 if (result.status == 200) {
                     var option = '';
-                    if(result.data.length > 0){
+                    if (result.data.length > 0) {
                         for (var key in result.data) {
                             var user_vacation = result.data[key]['user_vacation'] == 0 ? '' : '(休假)';
                             option += '<option value="' + result.data[key]['user_id'] + '" ' + result.data[key]['disabled'] + ' >' + result.data[key]['user_name'] + user_vacation + '</option>'
                         }
-                    }else{
+                    } else {
                         option = '<option disabled="disabled">本组暂无客服</option>';
                     }
 
@@ -267,7 +295,7 @@
          * 修改工单模型
          */
         $('select[name="model_id"]').on('change', function () {
-            if(!confirm('您确定要变更本工单模型吗?')){
+            if (!confirm('您确定要变更本工单模型吗?')) {
                 window.location.reload();
                 return false;
             }

@@ -534,9 +534,21 @@ class Ticket extends \Core\Model\Model {
     }
 
     /**
+     * 更新对工单的评价
+     * @param $id
+     * @param $admin_flog
+     * @return mixed
+     */
+    public static function updateAdminFlag($id, $admin_flog) {
+        return self::inTicketIdWithUpdate(['ticket_admin_flag' => $admin_flog, 'noset' => ['ticket_id' => $id]]);
+    }
+
+
+    /**
      * 工单运行时间
      * @param $id 工单ID
      * @param $submitTime 工单耗时参照时间
+     * @param $runTime 运行时间
      * @return mixed
      */
     public static function runTime($id, $referTime, $runTime) {

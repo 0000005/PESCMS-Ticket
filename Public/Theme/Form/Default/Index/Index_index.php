@@ -2,6 +2,7 @@
     <!--    logo-->
     <div class="am-text-center index-logo am-margin-bottom">
         <img src="<?= $system['siteLogo'] ?>" width="180"/>
+        <h1>该系统仅供金天鹅内部使用，请勿外传</h1>
     </div>
 
     <div class="am-u-sm-12 am-u-sm-centered am-u-lg-6 index-search">

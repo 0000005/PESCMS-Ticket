@@ -65,14 +65,18 @@ class Ticket extends \Core\Controller\Controller {
                     if($auth !== true){
                         $this->error($auth);
                     }
+                    if(empty($_POST['admin_flag']) || $_POST['admin_flag'] == '-1') {
+                        $this->error('操作失败，完成工单必须填写“对工单的评价”。');
+                    }
                     $status = '3';
                     $templateType = 5;
                     $content = $csText['complete']['content'];
-
+                    //记录工单完成时间
                     \Model\Ticket::inTicketIdWithUpdate([
                         'ticket_complete_time' => time(),
                         'noset' => ['ticket_id' => $ticket['ticket_id']]
                     ]);
+                    \Model\Ticket::updateAdminFlag($ticket['ticket_id'], $_POST['admin_flag']);
 
                 } else {
                     $this->error('未知的工单选择状态，请重新选择');
