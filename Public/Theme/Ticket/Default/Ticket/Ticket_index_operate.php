@@ -6,11 +6,11 @@
     <span>责任人: <?= $value['user_id'] > 0 ? $value['user_name'] : '<span class="am-text-danger">暂无</span>'; ?></span>
     <i class="am-margin-left-xs am-margin-right-xs">|</i>
     <span>工单评价:
-        <?= $value['ticket_admin_flag'] == '0' ? '售后对业务不熟悉' : ''; ?>
-        <?= $value['ticket_admin_flag'] == '1' ? '产品设计不合理' : ''; ?>
-        <?= $value['ticket_admin_flag'] == '2' ? '售后能力差' : ''; ?>
-        <?= $value['ticket_admin_flag'] == '3' ? '产品bug' : ''; ?>
-        <?= $value['ticket_admin_flag'] == '4' ? '无脑工单' : ''; ?>
+        <?= $value['ticket_admin_flag'] == '1' ? '售后对业务不熟悉' : ''; ?>
+        <?= $value['ticket_admin_flag'] == '2' ? '产品设计不合理' : ''; ?>
+        <?= $value['ticket_admin_flag'] == '3' ? '售后能力差' : ''; ?>
+        <?= $value['ticket_admin_flag'] == '4' ? '产品bug' : ''; ?>
+        <?= $value['ticket_admin_flag'] == '5' ? '无脑工单' : ''; ?>
         <?= $value['ticket_admin_flag'] == '-1' ? '未知' : ''; ?>
     </span>
     <i class="am-margin-left-xs am-margin-right-xs">|</i>

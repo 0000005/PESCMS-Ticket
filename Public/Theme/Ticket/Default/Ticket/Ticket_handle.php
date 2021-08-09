@@ -85,11 +85,11 @@
                                                     data-am-selected="{maxHeight: 200, btnSize: 'sm', dropUp: 0}"
                                                     data="<?= $ticket_admin_flag ?>">
                                                 <option value="-1">所有类型</option>
-                                                <option value="0">售后对业务不熟悉</option>
-                                                <option value="1">产品设计不合理</option>
-                                                <option value="2">售后能力差</option>
-                                                <option value="3">产品bug</option>
-                                                <option value="4">无脑工单</option>
+                                                <option value="1">售后对业务不熟悉</option>
+                                                <option value="2">产品设计不合理</option>
+                                                <option value="3">售后能力差</option>
+                                                <option value="4">产品bug</option>
+                                                <option value="5">无脑工单</option>
                                             </select>
                                             <hr/>
                                         </div>
