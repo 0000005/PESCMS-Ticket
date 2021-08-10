@@ -67,6 +67,7 @@ class Ticket extends \Core\Controller\Controller {
                     }
                     if(empty($_POST['admin_flag']) || $_POST['admin_flag'] == '-1') {
                         $this->error('操作失败，完成工单必须填写“对工单的评价”。');
+                        exit();
                     }
                     $status = '3';
                     $templateType = 5;
