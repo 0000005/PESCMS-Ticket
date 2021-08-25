@@ -90,6 +90,7 @@
                                                 <option value="3">售后能力差</option>
                                                 <option value="4">产品bug</option>
                                                 <option value="5">无脑工单</option>
+                                                <option value="6">客户操作错误</option>
                                             </select>
                                             <hr/>
                                         </div>

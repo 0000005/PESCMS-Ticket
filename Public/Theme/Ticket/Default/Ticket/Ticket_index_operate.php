@@ -11,6 +11,7 @@
         <?= $value['ticket_admin_flag'] == '3' ? '售后能力差' : ''; ?>
         <?= $value['ticket_admin_flag'] == '4' ? '产品bug' : ''; ?>
         <?= $value['ticket_admin_flag'] == '5' ? '无脑工单' : ''; ?>
+        <?= $value['ticket_admin_flag'] == '6' ? '客户操作错误' : ''; ?>
         <?= $value['ticket_admin_flag'] == '-1' ? '未知' : ''; ?>
     </span>
     <i class="am-margin-left-xs am-margin-right-xs">|</i>
