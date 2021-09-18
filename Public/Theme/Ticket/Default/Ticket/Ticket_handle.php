@@ -83,15 +83,25 @@
                                             <select name="admin_flag"
                                                     class="am-form-field am-input-sm am-radius am-text-middle"
                                                     data-am-selected="{maxHeight: 200, btnSize: 'sm', dropUp: 0}"
-                                                    data="<?= $ticket_admin_flag ?>">
+                                                    data="<?= $ticket_admin_flag ?>" id="ticket_admin_flag">
                                                 <option value="-1">请选择（必选）</option>
+                                                <option value="41">产品bug-老bug</option>
+                                                <option value="42">产品bug-正在修复</option>
+                                                <option value="43">产品bug-无法复现</option>
+                                                <option value="44">产品bug-不知道修复，需要协助</option>
                                                 <option value="1">售后对业务不熟悉</option>
                                                 <option value="2">产品设计不合理</option>
                                                 <option value="3">售后能力差</option>
-                                                <option value="4">产品bug</option>
                                                 <option value="5">无脑工单</option>
                                                 <option value="6">客户操作错误</option>
+                                                <option value="7">无效工单</option>
                                             </select>
+                                        </div>
+
+                                        <div class="am-form-group am-margin-top-xs am-hide admin-flag" id="ticketNum" style="display: none">
+                                            <label class="am-form-label am-margin-bottom-0 am-text-middle" style="float: left;">gitea工单编号：</label>
+                                            <input type="text" name="ticket_num" id="ticketNumInput" style="width: 200px"
+                                                   class="am-form-field am-input-sm am-radius am-text-middle">
                                             <hr/>
                                         </div>
                                     <?php endif; ?>
@@ -166,7 +176,7 @@
                                     </div>
                                 <?php endif; ?>
 
-                                <button type="submit" id="btn-submit" class="am-btn am-btn-primary am-btn-xs"
+                                <button onclick="submitForm()" type="button" class="am-btn am-btn-primary am-btn-xs"
                                         data-am-loading="{spinner: 'circle-o-notch', loadingText: '提交中...', resetText: '再次提交'}">
                                     提交
                                 </button>
@@ -208,13 +218,26 @@
             $(".assign-user").removeClass("am-hide");
             $(".phrase_list, .pt-reply-content").addClass("am-hide");
         } else if (val == '4') {
-            if (confirm('确定要设置工单为完成吗?') == false) {
-                $("input[name=assign]").removeAttr("checked");
-                $("input[name=assign]").eq(0).prop("checked", "checked")
-            } else {
-                //$("form").submit();
-                $(".admin-flag").removeClass("am-hide");
-            }
+            $(".admin-flag").removeClass("am-hide");
+            $(".pt-reply-content").remove();
+        }
+    }
+
+    function submitForm(){
+        if($('#ticket_admin_flag').val() == "-1"){
+            alert("请选择工单评价！");
+        }else if(isNeedTicketNum() && $('#ticketNumInput').val() == ""){
+            alert("请选择填写gitea工单编号！");
+        }else{
+            $("form").submit();
+        }
+    }
+
+    function isNeedTicketNum() {
+        if ( $('#ticket_admin_flag').val() == "42" || $('#ticket_admin_flag').val() == "43" || $('#ticket_admin_flag').val() == "44") {
+            return true;
+        } else {
+            return false;
         }
     }
 
@@ -223,6 +246,14 @@
         $("input[name=assign]").change(function () {
             assign($(this).val());
         })
+
+        $('#ticket_admin_flag').change(() => {
+            if (isNeedTicketNum()) {
+                $("#ticketNum").show();
+            } else {
+                $("#ticketNum").hide();
+            }
+        });
 
         /**
          * 回复短语

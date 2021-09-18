@@ -77,7 +77,7 @@ class Ticket extends \Core\Controller\Controller {
                         'ticket_complete_time' => time(),
                         'noset' => ['ticket_id' => $ticket['ticket_id']]
                     ]);
-                    \Model\Ticket::updateAdminFlag($ticket['ticket_id'], $_POST['admin_flag']);
+                    \Model\Ticket::updateAdminFlag($ticket['ticket_id'], $_POST['admin_flag'], $_POST['ticket_num']);
 
                 } else {
                     $this->error('未知的工单选择状态，请重新选择');

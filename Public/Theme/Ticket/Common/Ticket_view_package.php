@@ -46,6 +46,26 @@
                         <?php endif; ?>
                     </div>
 
+                    <?php if ($ticket_status == "3"): ?>
+                        <div class="am-u-sm-12 am-u-lg-3"><span class="pt-text-explode">工单评价 : </span>
+                            <?= $ticket_admin_flag == '1' ? '售后对业务不熟悉' : ''; ?>
+                            <?= $ticket_admin_flag == '2' ? '产品设计不合理' : ''; ?>
+                            <?= $ticket_admin_flag == '3' ? '售后能力差' : ''; ?>
+                            <?= $ticket_admin_flag == '4' ? '产品bug' : ''; ?>
+                            <?= $ticket_admin_flag == '41' ? '产品bug-老bug' : ''; ?>
+                            <?= $ticket_admin_flag == '42' ? '产品bug-正在修复' : ''; ?>
+                            <?= $ticket_admin_flag == '43' ? '产品bug-无法复现' : ''; ?>
+                            <?= $ticket_admin_flag == '44' ? '产品bug-不知道修复，需要协助' : ''; ?>
+                            <?= $ticket_admin_flag == '5' ? '无脑工单' : ''; ?>
+                            <?= $ticket_admin_flag == '6' ? '客户操作错误' : ''; ?>
+                            <?= $ticket_admin_flag == '7' ? '无效工单' : ''; ?>
+                            <?= $ticket_admin_flag == '-1' ? '未知' : ''; ?>
+                        </div>
+                        <div class="am-u-sm-12 am-u-lg-3"><span class="pt-text-explode">gitea工单 : </span>
+                            <?= $ticket_num ?>
+                        </div>
+                    <?php endif; ?>
+
                     <div class="am-u-sm-12 am-u-lg-3">
                         <?php if (!empty($this->session()->get('ticket')['user_id']) && !empty($member) && GROUP == 'Ticket' ): ?>
                         <span class="pt-text-explode">客户信息 :

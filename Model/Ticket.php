@@ -539,8 +539,8 @@ class Ticket extends \Core\Model\Model {
      * @param $admin_flog
      * @return mixed
      */
-    public static function updateAdminFlag($id, $admin_flog) {
-        return self::inTicketIdWithUpdate(['ticket_admin_flag' => $admin_flog, 'noset' => ['ticket_id' => $id]]);
+    public static function updateAdminFlag($id, $admin_flog ,$ticket_num) {
+        return self::inTicketIdWithUpdate(['ticket_admin_flag' => $admin_flog,'ticket_num' => $ticket_num, 'noset' => ['ticket_id' => $id]]);
     }
 
 
