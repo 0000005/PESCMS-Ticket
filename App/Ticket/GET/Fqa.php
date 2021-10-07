@@ -17,7 +17,7 @@ class Fqa extends Content {
         $ticketModel = \Model\TicketModel::getTicketModelList();
         $this->assign('ticketModel', $ticketModel);
 
-        if(!empty($_GET['ticket_model_id'])){
+        if(!empty($_GET['ticket_model_id']) && $_GET['ticket_model_id'] != -1){
             $this->condition .= ' AND fqa_ticket_model_id = :ticket_model_id ';
             $this->param['ticket_model_id'] = $this->g('ticket_model_id');
         }

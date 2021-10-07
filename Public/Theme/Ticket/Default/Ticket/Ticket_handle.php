@@ -224,9 +224,10 @@
     }
 
     function submitForm(){
-        if($('#ticket_admin_flag').val() == "-1"){
+        let status = $("input[name=assign]:checked").val();
+        if(status=="4" && $('#ticket_admin_flag').val() == "-1"){
             alert("请选择工单评价！");
-        }else if(isNeedTicketNum() && $('#ticketNumInput').val() == ""){
+        }else if(status=="4" && isNeedTicketNum() && $('#ticketNumInput').val() == ""){
             alert("请选择填写gitea工单编号！");
         }else{
             $("form").submit();

@@ -9,7 +9,7 @@
 //控制器名称
 define('ITEM', 'App');
 //调试模式
-define('DEBUG', false);
+define('DEBUG', true);
 //定位入口文件到PES CORE的目录路径
 $parentPath = dirname(dirname(__FILE__));
 //HTTP访问的目录路径

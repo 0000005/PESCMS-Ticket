@@ -42,7 +42,7 @@ class Content extends \Core\Controller\Controller {
         //排序条件
         $orderBy = "{$this->fieldPrefix}id DESC";
         foreach ($this->field as $key => $value) {
-            if (!empty($_GET['keyword'])) {
+            if (!empty($_GET['keyword']) && $value['field_name'] != 'listsort' && $value['field_name'] != 'ticket_model_id') {
                 $keyword = $this->g('keyword');
                 $conditionArray[] = " {$this->fieldPrefix}{$value['field_name']} LIKE :{$value['field_name']} ";
                 $this->param[$value['field_name']] = "%{$keyword}%";
@@ -63,6 +63,10 @@ class Content extends \Core\Controller\Controller {
         if(!empty($this->sortBy)){
             $orderBy = $this->sortBy;
         }
+
+        $log = new \Expand\Log();
+        $failLog = "faq " . $this->condition ." --- ". implode($this->param) . "   " . date("Y-m-d H:i:s");
+        $log->creatLog('faqError', $failLog);
 
 
         $total = count($this->db($this->table)->where($this->condition)->select($this->param));
