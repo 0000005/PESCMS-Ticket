@@ -84,16 +84,25 @@
                                                     class="am-form-field am-input-sm am-radius am-text-middle"
                                                     data-am-selected="{maxHeight: 200, btnSize: 'sm', dropUp: 0}"
                                                     data="<?= $ticket_admin_flag ?>" id="ticket_admin_flag">
+<!--                                                <option value="-1">请选择（必选）</option>-->
+<!--                                                <option value="41">产品bug-老bug</option>-->
+<!--                                                <option value="42">产品bug-正在修复</option>-->
+<!--                                                <option value="43">产品bug-无法复现</option>-->
+<!--                                                <option value="44">产品bug-不知道修复，需要协助</option>-->
+<!--                                                <option value="1">售后对业务不熟悉</option>-->
+<!--                                                <option value="2">产品设计不合理</option>-->
+<!--                                                <option value="3">售后能力差</option>-->
+<!--                                                <option value="5">无脑工单</option>-->
+<!--                                                <option value="6">客户操作错误</option>-->
+<!--                                                <option value="7">无效工单</option>-->
                                                 <option value="-1">请选择（必选）</option>
-                                                <option value="41">产品bug-老bug</option>
                                                 <option value="42">产品bug-正在修复</option>
                                                 <option value="43">产品bug-无法复现</option>
-                                                <option value="44">产品bug-不知道修复，需要协助</option>
-                                                <option value="1">售后对业务不熟悉</option>
-                                                <option value="2">产品设计不合理</option>
-                                                <option value="3">售后能力差</option>
-                                                <option value="5">无脑工单</option>
-                                                <option value="6">客户操作错误</option>
+                                                <option value="44">产品bug-暂时无法处理（能重现暂时不处理）</option>
+                                                <option value="1">工程师业务不熟悉（没找到功能，不会使用，咨询类问题）</option>
+                                                <option value="2">产品设计不合理（功能不符合场景）</option>
+                                                <option value="21">产品需求（功能没有）</option>
+                                                <option value="6">客户操作失误（客户操作导致系统问题）</option>
                                                 <option value="7">无效工单</option>
                                             </select>
                                         </div>

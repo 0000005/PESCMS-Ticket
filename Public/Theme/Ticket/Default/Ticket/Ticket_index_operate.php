@@ -6,16 +6,17 @@
     <span>责任人: <?= $value['user_id'] > 0 ? $value['user_name'] : '<span class="am-text-danger">暂无</span>'; ?></span>
     <i class="am-margin-left-xs am-margin-right-xs">|</i>
     <span>工单评价:
-        <?= $value['ticket_admin_flag'] == '1' ? '售后对业务不熟悉' : ''; ?>
+        <?= $value['ticket_admin_flag'] == '1' ? '工程师业务不熟悉（没找到功能，不会使用，咨询类问题）' : ''; ?>
         <?= $value['ticket_admin_flag'] == '2' ? '产品设计不合理' : ''; ?>
+        <?= $value['ticket_admin_flag'] == '21' ? '产品需求（功能没有）' : ''; ?>
         <?= $value['ticket_admin_flag'] == '3' ? '售后能力差' : ''; ?>
         <?= $value['ticket_admin_flag'] == '4' ? '产品bug' : ''; ?>
         <?= $value['ticket_admin_flag'] == '41' ? '产品bug-老bug' : ''; ?>
         <?= $value['ticket_admin_flag'] == '42' ? '产品bug-正在修复' : ''; ?>
         <?= $value['ticket_admin_flag'] == '43' ? '产品bug-无法复现' : ''; ?>
-        <?= $value['ticket_admin_flag'] == '44' ? '产品bug-不知道修复，需要协助' : ''; ?>
+        <?= $value['ticket_admin_flag'] == '44' ? '产品bug-暂时无法处理（能重现暂时不处理）' : ''; ?>
         <?= $value['ticket_admin_flag'] == '5' ? '无脑工单' : ''; ?>
-        <?= $value['ticket_admin_flag'] == '6' ? '客户操作错误' : ''; ?>
+        <?= $value['ticket_admin_flag'] == '6' ? '客户操作失误' : ''; ?>
         <?= $value['ticket_admin_flag'] == '7' ? '无效工单' : ''; ?>
         <?= $value['ticket_admin_flag'] == '-1' ? '未知' : ''; ?>
     </span>
