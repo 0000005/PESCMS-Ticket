@@ -36,10 +36,10 @@ class weixinWork {
             $FileCache->creatCache('weixinWork_access_token', $result);
         }
         $this->access_token = json_decode($result, true)['access_token'];
-        if(empty($this->access_token)){
-            $this->error = '解析企业微信access_token失败';
-            return $this->error;
-        }
+//        if(empty($this->access_token)){
+//            $this->error = '解析企业微信access_token失败';
+//            return $this->error;
+//        }
     }
 
     /**
@@ -51,10 +51,9 @@ class weixinWork {
             \Model\Extra::stopSend($param['send_id'], $this->error);
             return $this->error;
         }
-        $result = json_decode($this->notice($param['send_account'], $param['send_content']), true);
-
-        //发送成功，删除消息
-        if($result['errmsg'] == 'ok' && empty($result['invaliduser']) ){
+        $result = $this->notice($param['send_account'], $param['send_content']);
+//        发送成功，删除消息
+        if($result == 'ok'){
             $sendStatus = [
                 'msg' => '企业微信通知发送成功。',
                 'status' => 2,
@@ -67,6 +66,21 @@ class weixinWork {
                 'second' => 600,
             ];
         }
+//        $result = json_decode($this->notice($param['send_account'], $param['send_content']), true);
+////        发送成功，删除消息
+//        if($result['errmsg'] == 'ok' && empty($result['invaliduser']) ){
+//            $sendStatus = [
+//                'msg' => '企业微信通知发送成功。'+$param['send_account'] +":"+$param['send_content'],
+//                'status' => 2,
+//                'second' => 0,
+//            ];
+//        }else{
+//            $sendStatus = [
+//                'msg' => "企业微信通知发送失败！{$result['errmsg']}",
+//                'status' => 1,
+//                'second' => 600,
+//            ];
+//        }
         $sendStatus['id'] = $param['send_id'];
         $sendStatus['sequence'] = $param['send_sequence'];
         $sendStatus['full'] = $result;
@@ -83,15 +97,26 @@ class weixinWork {
      * @param $content 发送的内容
      * @return mixed
      */
+//    public function notice($account, $content){
+//        return (new cURL())->init("https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token={$this->access_token}", json_encode([
+//            "touser" => $account,
+//            "msgtype" => "text",
+//            "agentid" => $this->AgentId,
+//            "text" => [
+//                "content" => strip_tags(htmlspecialchars_decode($content), '<a><br>')
+//            ]
+//        ]));
+//    }
+
+    /**
+     * 发送企业微信应用消息通知（同程企业微信消息版本）
+     * @param $account 接收消息账号
+     * @param $content 发送的内容
+     * @return mixed
+     */
     public function notice($account, $content){
-        return (new cURL())->init("https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token={$this->access_token}", json_encode([
-            "touser" => $account,
-            "msgtype" => "text",
-            "agentid" => $this->AgentId,
-            "text" => [
-                "content" => strip_tags(htmlspecialchars_decode($content), '<a><br>')
-            ]
-        ]));
+        var_dump("http://123.207.61.134:31662/sendMsg?userList={$account}&content=".urlencode($content)."&title=".urlencode("工单消息"));
+        return (new cURL())->init("http://123.207.61.134:31662/sendMsg?userList={$account}&content=".urlencode($content)."&title=".urlencode("工单消息"));
     }
 
     /**

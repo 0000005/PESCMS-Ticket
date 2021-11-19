@@ -43,7 +43,7 @@
 </div>
 
 <div class="am-panel am-panel-default am-panel-hover am-panel-striped">
-    <div class="am-panel-hd">企业微信设置</div>
+    <div class="am-panel-hd">企业微信设置(这里的设置目前不再和通知有关，只和登录与同步用户有关)</div>
     <div class="am-panel-bd">
 
         <div class="am-g am-g-collapse">
