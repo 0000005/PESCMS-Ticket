@@ -104,8 +104,8 @@
                     </div>
                     <div class="am-u-sm-12 am-u-lg-3">
                         <?php if (GROUP == 'Form' && $ticket_status < 3 && $ticket_close == 0): ?>
-                            <a href="<?= $label->url('Ticket-status', ['number' => $ticket_number, 'back_url' => base64_encode($_SERVER['REQUEST_URI']), 'method' => 'PUT']) ?>"
-                               class="am-text-warning ajax-click ajax-dialog" msg="您确定要结束本工单吗?">结束工单</a>
+                            <!-- <a href="<?= $label->url('Ticket-status', ['number' => $ticket_number, 'back_url' => base64_encode($_SERVER['REQUEST_URI']), 'method' => 'PUT']) ?>"
+                               class="am-text-warning ajax-click ajax-dialog" msg="您确定要结束本工单吗?">结束工单</a> -->
                         <?php endif; ?>
                     </div>
                 </div>

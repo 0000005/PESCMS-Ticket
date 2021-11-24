@@ -89,8 +89,14 @@ class Ticket extends \Core\Controller\Controller {
             default:
                 $this->error('获取工单状态失败');
         }
+
+
+        if($_POST['assign'] != '4'){
+            //关闭工单不计入工单时间
+            \Model\Ticket::runTime($ticket['ticket_id'], $referTime, $ticket['ticket_run_time']);
+        }
+
         \Model\Ticket::updateReferTime($ticket['ticket_id']);
-        \Model\Ticket::runTime($ticket['ticket_id'], $referTime, $ticket['ticket_run_time']);
         \Model\Ticket::changeStatus($ticket['ticket_id'], $status);
         \Model\Ticket::addReply($ticket['ticket_id'], $content);
 

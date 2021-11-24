@@ -9,7 +9,7 @@
             <?= $label->token() ?>
             <div class="am-panel am-panel-default">
                 <div class="am-panel-bd">
-                    <h3 class="am-margin-0">处理工单</h3>
+                    <h3 class="am-margin-0"><span style="font-size:25px;color:red">↓↓↓↓先确定工单类型是否正确,再处理工单↓↓↓↓↓</span></h3>
                 </div>
                 <ul class="am-list am-list-static am-text-sm">
                     <li>
@@ -36,12 +36,12 @@
                                 <?php endif; ?>
 
                                 <?php if ($label->checkAuth('TicketPOSTTicketclose') === true): ?>
-                                    <div class="am-form-group">
+                                   <!--<div class="am-form-group">
                                         <label class="am-form-label am-margin-bottom-0">关闭工单 : </label>
                                         <a href="<?= $label->url('Ticket-Ticket-close', ['number' => $ticket_number, 'method' => 'POST', 'back_url' => base64_encode($_SERVER['REQUEST_URI'])]); ?>"
                                            class="am-text-danger ajax-click ajax-dialog" msg="确定要关闭本工单吗？">
                                             点击关闭</a>
-                                    </div>
+                                    </div>-->
                                 <?php endif; ?>
 
                                 <?php if ($ticket_status == '0'): ?>
@@ -184,7 +184,7 @@
                                         </div>
                                     </div>
                                 <?php endif; ?>
-
+                                <div style="font-size:25px;color:red;display: none" id="completeTip">一定要记录清楚“故障原因”和“解决方案”，才允许完成工单！</div>
                                 <button onclick="submitForm()" type="button" class="am-btn am-btn-primary am-btn-xs"
                                         data-am-loading="{spinner: 'circle-o-notch', loadingText: '提交中...', resetText: '再次提交'}">
                                     提交
@@ -228,6 +228,7 @@
             $(".phrase_list, .pt-reply-content").addClass("am-hide");
         } else if (val == '4') {
             $(".admin-flag").removeClass("am-hide");
+            $("#completeTip").show();
             $(".pt-reply-content").remove();
         }
     }
